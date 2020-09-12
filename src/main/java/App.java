@@ -16,8 +16,8 @@ public class App {
 
     // Router will split input on commas and redirect number strings to the side output
     SingleOutputStreamOperator<String> ingestStream = text
-      .process(new UppercaseProcessor())
       .process(new RouterProcessor())
+      .process(new UppercaseProcessor())
       ;
 
     DataStream<String> numberStream = ingestStream.getSideOutput(numberOutputTag)
